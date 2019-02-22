@@ -92,6 +92,44 @@ class TestLink(object):
         assert 'eggname' == Link(url).egg_fragment
         assert 'subdir' == Link(url).subdirectory_fragment
 
+    @pytest.mark.parametrize(
+        'url, expected',
+        [
+            ('foo.tar.gz', True),
+            ('http://example.com/wheel.whl', True),
+            ('https://example.com?foo.tar.gz', True),
+            ('ftp://example.com?foo.tar.gz', True),
+            ('some-unknown-proto://example.com?foo.tar.gz', True),
+            ('git+https://example.com/package#egg=eggname', False),
+            ('git://example.com/package#egg=eggname', False),
+            ('git+http://example.com/package#egg=eggname', False),
+            ('git+https://example.com/package#egg=eggname', False),
+            ('git+ssh://example.com/package#egg=eggname', False),
+            ('git+git://example.com/package#egg=eggname', False),
+            ('git+git@example.com:project/package#egg=eggname', False),
+            ('git+file://example.com/package#egg=eggname', False),
+            ('hg://example.com/package#egg=eggname', False),
+            ('hg+http://example.com/package#egg=eggname', False),
+            ('hg+https://example.com/package#egg=eggname', False),
+            ('hg+ssh://example.com/package#egg=eggname', False),
+            ('hg+static-http://example.com/package#egg=eggname', False),
+            ('svn://example.com/package#egg=eggname', False),
+            ('svn+ssh://example.com/package#egg=eggname', False),
+            ('svn+http://example.com/package#egg=eggname', False),
+            ('svn+https://example.com/package#egg=eggname', False),
+            ('svn+svn://example.com/package#egg=eggname', False),
+            ('bzr://example.com/package#egg=eggname', False),
+            ('bzr+http://example.com/package#egg=eggname', False),
+            ('bzr+https://example.com/package#egg=eggname', False),
+            ('bzr+ssh://example.com/package#egg=eggname', False),
+            ('bzr+sftp://example.com/package#egg=eggname', False),
+            ('bzr+ftp://example.com/package#egg=eggname', False),
+            ('bzr+lp:project/package#egg=eggname', False),
+        ]
+    )
+    def test_is_artifact(self, url, expected):
+        assert Link(url).is_artifact is expected
+
 
 @pytest.mark.parametrize(
     ("html", "url", "expected"),

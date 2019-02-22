@@ -71,7 +71,13 @@ class Link(KeyBasedCompareMixin):
     @property
     def scheme(self):
         # type: () -> str
-        return urllib_parse.urlsplit(self.url)[0]
+
+        # NOTE: This is just a workaround for an URL like git+user@hostname:user/repo.git
+        url = self.url
+        if '://' not in url and url.startswith('git+'):
+            url = url.replace('git+', 'git+ssh://')
+
+        return urllib_parse.urlsplit(url)[0]
 
     @property
     def netloc(self):
