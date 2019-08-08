@@ -341,7 +341,7 @@ class InstallCommand(RequirementCommand):
                     resolver.resolve(requirement_set)
 
                     print('Has: ', requirement_set.has_requirement("pip"))
-                    print('Req set', requirement_set.requirements)
+                    print('Req set', requirement_set.requirements.keys())
 
                     protect_pip_from_modification_on_windows(
                         modifying_pip=requirement_set.has_requirement("pip")

@@ -1191,6 +1191,7 @@ def protect_pip_from_modification_on_windows(modifying_pip):
         "pip{}.exe".format(sys.version_info[0]),
         "pip{}.{}.exe".format(*sys.version_info[:2])
     ]
+    print('pip_names>>', pip_names)
 
     # See https://github.com/pypa/pip/issues/1299 for more discussion
     should_show_use_python_msg = (
@@ -1198,6 +1199,10 @@ def protect_pip_from_modification_on_windows(modifying_pip):
         WINDOWS and
         os.path.basename(sys.argv[0]) in pip_names
     )
+    print('modifying_pip>>', modifying_pip)
+    print('WINDOWS>>', WINDOWS)
+    print('os.path.basename(sys.argv[0]) in pip_names>>', os.path.basename(sys.argv[0]) in pip_names)
+    print('should_show_use_python_msg>>', should_show_use_python_msg)
 
     if should_show_use_python_msg:
         new_command = [
