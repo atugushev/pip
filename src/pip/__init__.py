@@ -1,1 +1,2 @@
-__version__ = "19.3.dev0"
+# To force briefcase upgrade this (briefcase needs >=18.0)
+__version__ = "17.0"
