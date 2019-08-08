@@ -1201,6 +1201,7 @@ def protect_pip_from_modification_on_windows(modifying_pip):
     )
     print('modifying_pip>>', modifying_pip)
     print('WINDOWS>>', WINDOWS)
+    print('os.path.basename(sys.argv[0])>>', os.path.basename(sys.argv[0]))
     print('os.path.basename(sys.argv[0]) in pip_names>>', os.path.basename(sys.argv[0]) in pip_names)
     print('should_show_use_python_msg>>', should_show_use_python_msg)
 
