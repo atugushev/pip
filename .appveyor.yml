@@ -66,6 +66,6 @@ test_script:
             $env:TMP = "T:\"
             tox -e py -- -m unit
             if ($LastExitCode -eq 0 -and $env:RUN_INTEGRATION_TESTS -eq "True") {
-                tox -e py -- --use-venv -m integration -n2 --durations=20
+                tox -e py -- --use-venv -m integration -n2 --durations=20 -k test_rmtree
             }
         }

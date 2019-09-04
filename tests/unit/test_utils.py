@@ -432,6 +432,8 @@ def test_rmtree_errorhandler_reraises_error(tmpdir):
         with pytest.raises((RuntimeError, TypeError)):
             rmtree_errorhandler(mock_func, path, None)
     finally:
+        print('1)', os.stat(path).st_mode)
+        print('2)', os.stat(path).st_mode & stat.S_IREAD)
         # Restore the read permission to let the pytest to clean up temp dirs
         os.chmod(path, stat.S_IREAD)
 
