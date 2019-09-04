@@ -192,6 +192,7 @@ def rmtree_errorhandler(func, path, exc_info):
         # convert to read/write
         os.chmod(path, stat.S_IWRITE)
         # use the original function to repeat the operation
+        print('REMOVE>',path)
         func(path)
         return
     else:
