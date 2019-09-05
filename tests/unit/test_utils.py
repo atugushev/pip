@@ -426,7 +426,7 @@ def test_rmtree_errorhandler_reraises_error(tmpdir):
     print('1) stat.S_IWRITE', stat.S_IWRITE)
     print('2) os.stat(path).st_mode', os.stat(path).st_mode)
     print('2) os.stat(path).st_mode & stat.S_IREAD', os.stat(path).st_mode & stat.S_IREAD)
-    print('2) os.stat(path).st_mode & stat.S_WRITE', os.stat(path).st_mode & stat.S_WRITE)
+    print('2) os.stat(path).st_mode & stat.S_IWRITE', os.stat(path).st_mode & stat.S_IWRITE)
 
     mock_func = Mock()
     # Make sure the handler reraises an exception.
