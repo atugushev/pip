@@ -182,7 +182,11 @@ def rmtree_errorhandler(func, path, exc_info):
     remove them, an exception is thrown.  We catch that here, remove the
     read-only attribute, and hopefully continue without problems."""
     try:
-        is_readonly = not (os.stat(path).st_mode & stat.S_IWRITE)
+        if sys.version_info < (3, 5):
+            is_readonly = not (os.stat(path).st_mode & stat.S_IWRITE)
+        else:
+            is_readonly = os.stat(path).st_file_attributes & \
+                          stat.FILE_ATTRIBUTE_READONLY
     except (IOError, OSError):
         # The path already removed, nothing to do
         return
