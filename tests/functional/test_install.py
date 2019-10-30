@@ -505,6 +505,7 @@ def test_install_from_local_directory_with_symlinks_to_directories(
     assert egg_info_folder in result.files_created, str(result)
 
 
+@pytest.mark.enable_socket
 @pytest.mark.skipif("sys.platform == 'win32' or sys.version_info < (3,)")
 def test_install_from_local_directory_with_socket_file(script, data, tmpdir):
     """

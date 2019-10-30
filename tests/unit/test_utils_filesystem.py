@@ -29,6 +29,7 @@ def make_dir(path):
 skip_on_windows = pytest.mark.skipif("sys.platform == 'win32'")
 
 
+@pytest.mark.enable_socket
 @skip_on_windows
 @pytest.mark.parametrize("create,result", [
     (make_socket_file, True),
@@ -44,6 +45,7 @@ def test_is_socket(create, result, tmpdir):
     assert is_socket(target) == result
 
 
+@pytest.mark.enable_socket
 @pytest.mark.parametrize("create,error_type", [
     pytest.param(
         make_socket_file, shutil.SpecialFileError, marks=skip_on_windows

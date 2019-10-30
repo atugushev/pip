@@ -263,6 +263,7 @@ def test_copy_source_tree(clean_project, tmpdir):
     assert expected_files == copied_files
 
 
+@pytest.mark.enable_socket
 @pytest.mark.skipif("sys.platform == 'win32' or sys.version_info < (3,)")
 def test_copy_source_tree_with_socket(clean_project, tmpdir, caplog):
     target = tmpdir.joinpath("target")
@@ -282,6 +283,7 @@ def test_copy_source_tree_with_socket(clean_project, tmpdir, caplog):
     assert socket_path in record.message
 
 
+@pytest.mark.enable_socket
 @pytest.mark.skipif("sys.platform == 'win32' or sys.version_info < (3,)")
 def test_copy_source_tree_with_socket_fails_with_no_socket_error(
     clean_project, tmpdir

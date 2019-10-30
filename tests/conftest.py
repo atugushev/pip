@@ -32,10 +32,12 @@ def pytest_collection_modifyitems(config, items):
         if not hasattr(item, 'module'):  # e.g.: DoctestTextfile
             continue
 
-        # Mark network tests as flaky
-        if (item.get_closest_marker('network') is not None and
-                "CI" in os.environ):
-            item.add_marker(pytest.mark.flaky(reruns=3))
+        if item.get_closest_marker('network') is not None:
+            # Mark network tests as flaky
+            if "CI" in os.environ:
+                item.add_marker(pytest.mark.flaky(reruns=3))
+            # Allow tests to use socket
+            item.add_marker(pytest.mark.enable_socket)
 
         if six.PY3:
             if (item.get_closest_marker('incompatible_with_test_venv') and
