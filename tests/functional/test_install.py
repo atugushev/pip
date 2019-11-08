@@ -449,22 +449,9 @@ def test_install_quiet(script, data):
     #   https://github.com/pypa/pip/issues/3418
     #   https://github.com/docker-library/python/issues/83
     to_install = data.packages.joinpath("FSPkg")
-    #script.pip('install', 'pytest-cov', expect_error=False)
-    # result = script.pip('install', '--extra-index-url', 'https://ya.ru', '--find-links', 'foo', '-qqq', to_install, expect_error=False, cwd='/Users/albert/Projects/pip/src/pip')
-    # raise Exception(script.run('which', 'python'))
-    #raise Exception(subprocess.check_output(['python', '-m', 'pip', '--version']), script.venv_path)
-    #subprocess.check_output([script.venv_path / 'bin' / 'python', '-m', 'pip', 'install', '--extra-index-url', 'https://ya.ru', '--find-links', 'foo', '-qqq', to_install], cwd="/Users/albert/Projects/pip/src")
-
-    # python = script.venv_path / 'bin' / 'python'
-    # subprocess.check_output([python, '-m', 'pip', 'install', 'pytest-cov'])
-    # subprocess.check_output([python, '-m', 'pip', 'install', '--extra-index-url', 'https://ya.ru', '--find-links', 'foo', '-qqq', to_install], cwd="/Users/albert/Projects/pip/src")
-
-
-    #script.pip('install', 'pytest-cov', expect_error=False)
-    result = script.pip('install', '--extra-index-url', 'https://ya.ru', '--find-links', 'foo', '-qqq', to_install, expect_error=False, cwd='/Users/albert/Projects/pip/src')
-
-    # assert result.stdout == ""
-    # assert result.stderr == ""
+    result = script.pip('install', '-qqq', to_install, expect_error=False)
+    assert result.stdout == ""
+    assert result.stderr == ""
 
 
 def test_hashed_install_success(script, data, tmpdir):
