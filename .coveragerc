@@ -1,7 +1,8 @@
 [run]
+parallel = True
 branch = True
-source = /Users/albert/Projects/pip
-data_file = /Users/albert/Projects/pip/.coverage
+source = $PWD
+data_file = $PWD/.coverage
 omit =
   src/pip/_vendor/*
 
