@@ -2,7 +2,6 @@ import distutils
 import glob
 import os
 import shutil
-import subprocess
 import sys
 import textwrap
 from os.path import curdir, join, pardir

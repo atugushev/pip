@@ -253,7 +253,8 @@ def virtualenv_template(request, tmpdir_factory, pip_src,
     )
     subprocess.check_call([venv.bin / 'python', 'setup.py', '-q', 'develop'],
                           cwd=pip_editable)
-    subprocess.check_call([venv.bin / 'python', '-m', 'pip', 'install', 'coverage-enable-subprocess'])
+    subprocess.check_call([venv.bin / 'python', '-m', 'pip',
+                           'install', 'coverage-enable-subprocess'])
 
     # Drop (non-relocatable) launchers.
     for exe in os.listdir(venv.bin):
@@ -282,10 +283,7 @@ def virtualenv(virtualenv_template, tmpdir, isolate):
     ``tests.lib.venv.VirtualEnvironment`` object.
     """
     venv_location = tmpdir.joinpath("workspace", "venv")
-    venv = VirtualEnvironment(venv_location, virtualenv_template)
-    # subprocess.check_output([venv_location / 'bin' / 'python', '-m', 'pip', 'install', 'pytest-cov'])
-    #subprocess.check_output([venv_location / 'bin' / 'python', '-m', 'pip', 'install', 'coverage_enable_subprocess'])
-    yield venv
+    yield VirtualEnvironment(venv_location, virtualenv_template)
 
 
 @pytest.fixture
@@ -321,6 +319,9 @@ def script(tmpdir, virtualenv, deprecated_python):
 
         # Deprecated python versions produce an extra deprecation warning
         pip_expect_warning=deprecated_python,
+
+        # This does the trick
+        cwd=SRC_DIR / 'src',
     )
 
 
