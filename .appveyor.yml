@@ -67,3 +67,8 @@ test_script:
                 tox -e py -- --use-venv -m integration -n auto --durations=20
             }
         }
+
+after_test:
+  - pip install codecov
+  - coverage xml
+  - appveyor-retry codecov --required -X gcov pycov search -f coverage.xml -n %PYTHON%-windows
