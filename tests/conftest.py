@@ -253,6 +253,7 @@ def virtualenv_template(request, tmpdir_factory, pip_src,
     )
     subprocess.check_call([venv.bin / 'python', 'setup.py', '-q', 'develop'],
                           cwd=pip_editable)
+    subprocess.check_call([venv.bin / 'python', '-m', 'pip', 'install', 'pytest-cov'])
 
     # Drop (non-relocatable) launchers.
     for exe in os.listdir(venv.bin):

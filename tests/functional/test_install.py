@@ -460,7 +460,7 @@ def test_install_quiet(script, data):
     # subprocess.check_output([python, '-m', 'pip', 'install', '--extra-index-url', 'https://ya.ru', '--find-links', 'foo', '-qqq', to_install], cwd="/Users/albert/Projects/pip/src")
 
 
-    script.pip('install', 'pytest-cov', expect_error=False)
+    #script.pip('install', 'pytest-cov', expect_error=False)
     result = script.pip('install', '--extra-index-url', 'https://ya.ru', '--find-links', 'foo', '-qqq', to_install, expect_error=False, cwd='/Users/albert/Projects/pip/src')
 
     # assert result.stdout == ""
