@@ -322,6 +322,8 @@ index_url = partial(
 
 
 def extra_index_url():
+    # import os
+    # raise Exception('GOTCHA!', os.environ)
     return Option(
         '--extra-index-url',
         dest='extra_index_urls',

@@ -1,4 +1,9 @@
 [run]
 branch = True
+source = /Users/albert/Projects/pip
+data_file = /Users/albert/Projects/pip/.coverage
 omit =
   src/pip/_vendor/*
+
+[report]
+include = src/pip/_internal/*, tests/*

@@ -448,7 +448,8 @@ def test_install_quiet(script, data):
     #   https://github.com/pypa/pip/issues/3418
     #   https://github.com/docker-library/python/issues/83
     to_install = data.packages.joinpath("FSPkg")
-    result = script.pip('install', '-qqq', to_install, expect_error=False)
+    script.pip('install', 'coverage_enable_subprocess', expect_error=False)
+    result = script.pip('install', '--extra-index-url', 'https://ya.ru', '--find-links', 'foo', '-qqq', to_install, expect_error=False)
     assert result.stdout == ""
     assert result.stderr == ""
 

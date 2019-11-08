@@ -281,7 +281,10 @@ def virtualenv(virtualenv_template, tmpdir, isolate):
     ``tests.lib.venv.VirtualEnvironment`` object.
     """
     venv_location = tmpdir.joinpath("workspace", "venv")
-    yield VirtualEnvironment(venv_location, virtualenv_template)
+    venv = VirtualEnvironment(venv_location, virtualenv_template)
+    # subprocess.check_output([venv_location / 'bin' / 'python', '-m', 'pip', 'install', 'pytest-cov'])
+    #subprocess.check_output([venv_location / 'bin' / 'python', '-m', 'pip', 'install', 'coverage_enable_subprocess'])
+    yield venv
 
 
 @pytest.fixture
