@@ -465,6 +465,8 @@ class PipTestEnvironment(TestFileEnvironment):
         environ["PATH"] = Path.pathsep.join(
             [self.bin_path] + [environ.get("PATH", [])],
         )
+        # This does the trick
+        environ["PYTHONPATH"] = SRC_DIR / 'src'
         environ["PYTHONUSERBASE"] = self.user_base_path
         # Writing bytecode can mess up updated file detection
         environ["PYTHONDONTWRITEBYTECODE"] = "1"

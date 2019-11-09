@@ -321,7 +321,7 @@ def script(tmpdir, virtualenv, deprecated_python):
         pip_expect_warning=deprecated_python,
 
         # This does the trick
-        cwd=SRC_DIR / 'src',
+        # cwd=SRC_DIR / 'src',
     )
 
 
